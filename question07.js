@@ -1,5 +1,4 @@
-function Fibonacci(n)
-{
+function Fibonacci(n) {
   if(n == 0) {
     return 0;
   } else if(n == 1) {
@@ -16,5 +15,3 @@ function Fibonacci(n)
     return temp;
   }
 }
-
-console.log(Fibonacci(39));
