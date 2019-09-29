@@ -3,17 +3,17 @@ function MoreThanHalfNum_Solution(numbers) {
     return 0;
   }
   const partition = (arr, start, end) => {
-    if(arr.length == 1) {
+    if(start >= end) {
       return arr;
     }
     let middle = Math.floor((start + end) / 2);
     let i = start;
     let j = end;
     while(i <= j) {
-      if(arr[i] < arr[middle]) {
+      while(arr[i] < arr[middle]) {
         i++;
       }
-      if(arr[j] > arr[middle]) {
+      while(arr[j] > arr[middle]) {
         j--;
       }
       if(i <= j) {
@@ -23,17 +23,20 @@ function MoreThanHalfNum_Solution(numbers) {
         i++;
         j--;
       }
-      return i;
     }
+    return i;
   }
 
   const sort = (arr, start, end) => {
+    if(arr.length <= 1) {
+      return arr;
+    }
     let index = partition(arr, start, end);
     if(start < index - 1) {
       arr = sort(arr, start, index - 1);
     } 
-    if(end > index + 1) {
-      arr = sort(arr, index + 1, end);
+    if(end > index) {
+      arr = sort(arr, index, end);
     }
     return arr;
   }
